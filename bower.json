@@ -1,0 +1,18 @@
+{
+  "name": "v_OnDev",
+  "version": "0.0.0",
+  "authors": [
+    "Manu Lechat <manu.lechat@free.fr>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components"
+  ],
+  "dependencies": {
+    "jquery": "~2.1.1",
+    "gsap": "~1.13.2",
+    "bowser": "~0.7.2"
+  }
+}

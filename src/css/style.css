@@ -1,0 +1,68 @@
+@font-face {
+  font-family: 'regular';
+  src: url('../font/VianovaSansPro-Regular.ttf')  format("truetype");
+}
+
+@font-face {
+  font-family: 'semibold';
+  src: url('../font/VianovaSansPro-Bold.ttf')  format("truetype");
+}
+@font-face {
+  font-family: 'italic';
+  src: url('../font/VianovaSansPro-Italic.ttf')  format("truetype");
+}
+
+* { border: 0; margin: 0; padding: 0; list-style: none; outline: none; text-decoration: none; box-sizing: border-box; display: block }
+*::selection {  background: none; }
+html { display: table; table-layout: fixed; position: fixed; width: 100%; height: 100%; max-height: 100%;  }
+body { display: table-cell; width: 100%; height: 100%; max-height: 100%; vertical-align: middle; margin:0;   
+  font-family:'regular', sans-serif; background-color: #000;  color: #fff;  }
+
+#main_container{ position: relative; width:1920px; height:1080px; max-height: 100%; margin: auto; font-size: 14px; background: url("../img/brown_bg.jpg"); background-size: 100% 100%; }
+
+header{ z-index: 2; width: 100%; background: url("../img/header_bg.png"); background-size: 100% 100%;  position: relative; top: 0; height: 7.5em; 
+margin: 0 auto; text-align: center }
+header h1{ font-size: 4em; font-weight: lighter;  color: #fff; float: left; padding: 10px;
+background: -webkit-linear-gradient(top, #fff,  #fff 50%, #aaa);
+background: linear-gradient(top, #fff, #fff 50%, #aaa);
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+	 }
+header .line{  height:7.5em;  float: left; width: 6em; display: block; background:  url("../img/header_line_bg.png"); background-size: 100% 100% }
+header .titre{ display: inline-block; }
+
+#media_container{ width: 100%; height: 100%; display: block; }
+#video_1_container{ width: 100%; height: 100%; display: block; }
+#media_container video{ width: 100%; height: 100%; display: block; }
+
+#colone_gauche{z-index: 2; overflow: hidden; font-size: 1.2em ; position: absolute;  width: 12%; min-height: 50%; max-height: 70%; top: 25%;   background-color: rgba(0,0,0,0.5); padding: 2em 1em  }
+#colone_gauche .content_en{ margin-top: 2em; }
+#colone_gauche .titre_fr{ font-size: 1.5em }
+#colone_gauche .txt_fr{  font-family:'italic',sans-serif; }
+
+#colone_droite{ z-index: 2;position: absolute; right: 0; width: 12%; height: 50%; top: 25%; background-color: rgba(0,0,0,0.5); background-size: auto 100%; text-align: center }
+
+#colone_droite .a_container{ width: 90%; background:red; margin: 2em auto; }
+#colone_droite a{ width: 40%; height: 3em; margin: 5%;  display: block; cursor: pointer; float: left; background-repeat: no-repeat; background-size: auto 100%; background-position: center center}
+a#arrow_prev{ background-image: url("../img/arrow_prv.png") ;   }
+a#arrow_next{ background-image: url("../img/arrow_nxt.png"); float: right }
+
+#colone_droite ul{ clear: both; position: relative; margin: 00px auto; top: 2em; width: 20px; text-align: center }
+#colone_droite ul li{ color: #a1a29d; font-size: 2em; line-height: 1.2em }
+#colone_droite ul li.active{ color: #fc7d2a }
+
+
+#global_bg{z-index: 1; position: absolute; display: block; top: 0; left: 0; width: 100%; height: 100%;   }
+#global_bg img{ width: auto; margin: auto; height: 100%; z-index: 2; }
+#media_container { z-index: 2 } 
+
+#media_container div{ position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: block;  }
+#media_container .divToHide{ }
+#media_container .div_to_show{  opacity: 0}
+
+
+@media screen and (max-width: 1990px) {
+  
+
+	#main_container { width: 1200px; height: 650px;  font-size: 10px; }
+}
