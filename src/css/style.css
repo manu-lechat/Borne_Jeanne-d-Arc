@@ -48,7 +48,7 @@ a#arrow_prev{ background-image: url("../img/arrow_prv.png") ;   }
 a#arrow_next{ background-image: url("../img/arrow_nxt.png"); float: right }
 
 #colone_droite ul{ clear: both; position: relative; margin: 00px auto; top: 2em; width: 20px; text-align: center }
-#colone_droite ul li{ color: #a1a29d; font-size: 2em; line-height: 1.2em }
+#colone_droite ul li{ color: #a1a29d; font-size: 2em; line-height: 1.2em; transition: color 1s;}
 #colone_droite ul li.active{ color: #fc7d2a }
 
 
@@ -56,9 +56,13 @@ a#arrow_next{ background-image: url("../img/arrow_nxt.png"); float: right }
 #global_bg img{ width: auto; margin: auto; height: 100%; z-index: 2; }
 #media_container { z-index: 2 } 
 
-#media_container div{ position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: block;  }
+#media_container div{ position: absolute; overflow: hidden; top: 0; left: 0; width: 100%; height: 100%; display: block;  }
 #media_container .divToHide{ }
 #media_container .div_to_show{  opacity: 0}
+
+#media_container video{ position: inherit; right: 0; bottom: 0;
+min-width: 100%; min-height: 100%; top: -20%;
+width: auto; height: auto;  }
 
 
 @media screen and (max-width: 1990px) {
