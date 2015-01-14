@@ -1,7 +1,7 @@
 var obj_json; 
 var JsonArray; 
 var currentStep = 0;
-var urlJson = "data/borne_JA.json";
+var urlJson = "json/borne_JA.json";
 var obj_diaporama;
 var timer_autoplay;
 

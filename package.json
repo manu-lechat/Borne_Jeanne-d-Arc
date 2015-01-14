@@ -2,7 +2,14 @@
   "name": "Borne_JA",
   "version": "0.0.0",
   "description": "HISTORIAL JEANNE D'ARC – MY3 Jeanne et ROUEN",
-  "main": "index.js",
+  "main": "dist/index.html",
+  "window": {
+    "toolbar": true,
+    "frame": true,
+    "fullscreen": false,
+    "height": 800,
+    "width": 1200
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -17,7 +24,7 @@
   },
   "homepage": "https://github.com/manu-lechat/Borne_Jeanne-d-Arc",
   "devDependencies": {
-    "gulp": "~3.8.8",
+    "gulp": "~3.8.10",
     "joii": "~3.0.6",
     "rimraf": "~2.2.8",
     "gulp-usemin": "~0.3.8"

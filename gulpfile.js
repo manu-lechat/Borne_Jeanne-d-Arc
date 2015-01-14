@@ -23,7 +23,7 @@ var src = {
 	img:'src/img/**',
 	js:'src/js/**',
 	media:'src/media/**',
-	question:'src/question/**',
+	data:'src/json/**',
 	index:'src/index.html'
 };
 
@@ -35,7 +35,7 @@ var dest = {
 	img:'dist/img',
 	js:'dist/js',
 	media:'dist/media',
-	json:'dist/json',
+	data:'dist/json',
 };
 
 // start a dev server
@@ -44,20 +44,26 @@ gulp.task('server', function() {
 	app.use(express.static(src.folder));
 	app.use('/bower_components', express.static(__dirname + '/bower_components'));
 	app.use(bodyParser());
-	app.listen(8080, function() {
-		gutil.log('Listening on 8080');
+	app.listen(9090, function() {
+		gutil.log('Listening on 9090');
 	});
 });
 
 // open the default browser on the dev server
 gulp.task('open', function() {
-	open('http://localhost:8080/');
+	open('http://localhost:9090/');
 });
 
-// copy questions
-gulp.task('question', function() {
-	gulp.src(src.question)
-		.pipe(gulp.dest(dest.question))
+// copy datas
+gulp.task('data', function() {
+	gulp.src(src.data)
+		.pipe(gulp.dest(dest.data))
+		.pipe(refresh(server));
+});
+
+// copy medias
+gulp.task('css', function() {
+	gulp.src(src.css)
 		.pipe(refresh(server));
 });
 
@@ -79,13 +85,16 @@ gulp.task('font', function() {
 gulp.task('usemin', function(){
 	gulp.src(src.index)
 		.pipe(usemin({
-			css: [minifyCss(), 'concat'],
+			//css: [minifyCss(), 'concat'],
 			html: [minifyHtml({empty: true})],
 			js: [uglify()]
 		}))
 		.pipe(gulp.dest(dest.folder))
 		.pipe(refresh(server));
 });
+
+
+
 
 // minify images
 gulp.task('img', function() {
@@ -129,24 +138,41 @@ gulp.task('lint', function() {
 gulp.task('default', function() {
 	// delete dist folder and rebuild it
 	rimraf(dest.folder, function() {
-		gulp.start('server', 'livereload', 'open', 'question', 'media', 'img', 'font', 'usemin');
+		gulp.start('server', 'livereload', 'open', 'data', 'media', 'img', 'font', 'usemin');
 	});
 
 	// watch assets, and if they change rebuild them
 	gulp.watch(src.font, ['font']);
-	gulp.watch(src.question, ['question']);
-	gulp.watch(src.media, ['media']);
+	gulp.watch(src.data, ['data']);
+	//gulp.watch(src.media, ['media']);
 	gulp.watch(src.js, ['usemin']);
 	gulp.watch(src.css, ['usemin']);
 	gulp.watch(src.index, ['usemin']);
-	gulp.watch(src.img, ['img']);
+	//gulp.watch(src.img, ['img']);
 });
+
+
+// dev task : run with 'gulp dev'
+gulp.task('dev', function() {
+	// delete dist folder and rebuild it
+	rimraf(dest.folder, function() {
+		gulp.start('server', 'livereload', 'open', 'data', 'media', 'img', 'font', 'usemin');
+	});
+
+	// watch assets, and if they change rebuild them
+	gulp.watch(src.font, ['font']);
+	gulp.watch(src.data, ['data']);
+	gulp.watch(src.css, ['css']);
+	gulp.watch(src.js, ['usemin']);
+	gulp.watch(src.index, ['usemin']);
+});
+
 
 gulp.task('prepare', function() {
 	// delete dist folder and rebuild it
 	rimraf(dest.folder, function() {
 		rimraf('webkitbuilds', function() {
-			gulp.start('question', 'media', 'img', 'font', 'usemin');
+			gulp.start('data', 'media', 'img', 'font', 'usemin');
 		});
 	});
 });

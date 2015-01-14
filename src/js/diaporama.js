@@ -1,5 +1,6 @@
 var currentId =0;
 var timer1;
+var tweenDiapo;
 
 var diaporama = function(){
 
@@ -39,7 +40,6 @@ var diaporama = function(){
 
 	// private functions ////////////////////////////////////////////////////////////////////////////////
 
-
 	// autoplay --- 
 
 	function startAutoplay(){
@@ -60,7 +60,7 @@ var diaporama = function(){
 
 		clearTimeout(timer1);
 		timer1 = null;
-	    timer1 = setTimeout( loopAutoplay, 20000);	    
+	    timer1 = setTimeout( loopAutoplay, 120000);	    
 	    // autoplay will start after 20' of inactivity
 	    console.log('setTimeout 20');
 	}
@@ -101,6 +101,7 @@ var diaporama = function(){
 		document.getElementById('txt_en').innerHTML = JsonArray.items[id].txt_en;
 		document.getElementById('auteur_en').innerHTML = JsonArray.items[id].auteur_en;
 		document.getElementById('source_en').innerHTML = JsonArray.items[id].source_en;
+		TweenLite.fromTo("#colone_gauche div", 2, { opacity:"0"},{ opacity:"1"});
 
 		// puces
 		$("#liste_puces li" ).removeClass("active");
@@ -119,9 +120,13 @@ var diaporama = function(){
 			// on insère une div contenant l'image à afficher
 			document.getElementById("media_container").innerHTML += "<div class='div_to_show'><img  src='media/"+JsonArray.items[id].file+"'></div>"
 			// on tween en opacity de 0 à 1 - onComplete, on vire les div marquées
-			TweenLite.fromTo("#media_container .div_to_show", 3, { opacity:"0"},{ opacity:"1", onComplete: function(){
-				$("#media_container div.divToKill").each(function() { this.parentNode.removeChild(this); });
-				console.log("delete divToKill");
+			tweenDiapo = TweenLite.fromTo("#media_container .div_to_show", 3, { opacity:"0"},{ opacity:"1", onComplete: function(){
+
+				if(!tweenDiapo.isActive()){
+					$("#media_container div.divToKill").each(function() { this.parentNode.removeChild(this); });
+					console.log("delete divToKill");
+				}
+
 			}});
 		}else{
 			// it's a video
@@ -130,9 +135,13 @@ var diaporama = function(){
 			stop_autoplay();
 			//  2- on gère la dispartition du contenu précédent
 			$("#media_container div").each(function() {	this.className = "divToKill"; });
-			TweenLite.to("#media_container .divToKill", 1, { opacity:"0", onComplete: function(){
-				$("#media_container div.divToKill").each(function() { this.parentNode.removeChild(this); });
-				console.log("delete divToKill");
+			tweenDiapo = TweenLite.to("#media_container .divToKill", 1, { opacity:"0", onComplete: function(){
+
+				if(!tweenDiapo.isActive()){
+					$("#media_container div.divToKill").each(function() { this.parentNode.removeChild(this); });
+					console.log("delete divToKill");
+				}			
+
 			}});
 			// 3 - on insère une div contenant la vidéo à afficher
 			var htmlToInsert = "<div class='div_to_show divToKill_first'>";
@@ -148,8 +157,6 @@ var diaporama = function(){
 				next();
 			}
 			document.getElementById("videoclip").addEventListener("ended", toDoOnEnd);
-
-
 		}
 
 	}

@@ -35,12 +35,16 @@ header .titre{ display: inline-block; }
 #video_1_container{ width: 100%; height: 100%; display: block; }
 #media_container video{ width: 100%; height: 100%; display: block; }
 
-#colone_gauche{z-index: 2; overflow: hidden; font-size: 1.2em ; position: absolute;  width: 12%; min-height: 50%; max-height: 70%; top: 25%;   background-color: rgba(0,0,0,0.5); padding: 2em 1em  }
-#colone_gauche .content_en{ margin-top: 2em; }
-#colone_gauche .titre_fr{ font-size: 1.5em }
-#colone_gauche .txt_fr{  font-family:'italic',sans-serif; }
+#colone_gauche{z-index: 2; overflow: hidden; font-size: 1.2em ; position: absolute;  width: 12%; min-height: 50%; max-height: 70%; top: 25%;   background-color: rgba(48,39,33,0.5); padding: 1em   }
+#colone_gauche .content_en{ margin-top: 2em; clear: both; }
+#colone_gauche h1{ font-size: 1.4em; margin-bottom: 0.5em;  }
+#colone_gauche p{ font-size: 0.9em;  }
+#colone_gauche p.signature{ font-family:'italic',sans-serif;  margin-top: 1em}
+#colone_gauche p.signature span{ float: left }
 
-#colone_droite{ z-index: 2;position: absolute; right: 0; width: 12%; height: 50%; top: 25%; background-color: rgba(0,0,0,0.5); background-size: auto 100%; text-align: center }
+
+#colone_droite{ z-index: 2;position: absolute; right: 0; width: 12%; height: 50%; top: 25%; background-color: rgba(48,39,33,0.5); background-size: auto 100%; text-align: center }
+
 
 #colone_droite .a_container{ width: 90%; background:red; margin: 2em auto; }
 #colone_droite a{ width: 40%; height: 3em; margin: 5%;  display: block; cursor: pointer; float: left; background-repeat: no-repeat; background-size: auto 100%; background-position: center center}
@@ -60,12 +64,12 @@ a#arrow_next{ background-image: url("../img/arrow_nxt.png"); float: right }
 #media_container .divToHide{ }
 #media_container .div_to_show{  opacity: 0}
 
-#media_container video{ position: inherit; right: 0; bottom: 0;
+#media_container video{ /*position: inherit; right: 0; bottom: 0;
 min-width: 100%; min-height: 100%; top: -20%;
-width: auto; height: auto;  }
+width: auto; height: auto;*/;   }
 
 
-@media screen and (max-width: 1990px) {
+@media screen and (max-width: 1800px) {
   
 
 	#main_container { width: 1200px; height: 650px;  font-size: 10px; }

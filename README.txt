@@ -23,7 +23,7 @@ Les outils de dev mis en place sont les suivants:
 
 ## Installer les outils de dev
 
--> Go to local project folder : cd _PROJETS/_PROJETS\ 2015/155\ -\ Borne\ Jeanne\ d\'Arc/EL/dev/Borne_JA
+-> Go to local project folder : cd _PROJETS/_PROJETS\ 2015/155\ -\ Borne\ Jeanne\ d\'Arc/EL/dev/Borne_Jeanne-d-Arc
 
 
 - gulp : `npm install -g gulp`
@@ -40,7 +40,7 @@ Les outils de dev mis en place sont les suivants:
 
 ## Installer les dépendances du projet
 
-local path : cd _PROJETS/_PROJETS\ 2015/155\ -\ Borne\ Jeanne\ d\'Arc/EL/dev/Borne_JA
+local path : cd _PROJETS/_PROJETS\ 2015/155\ -\ Borne\ Jeanne\ d\'Arc/EL/dev/Borne_Jeanne-d-Arc
 
 npm install gulp --save-dev
 ( on a besoin de cette dépendance mais que dans le développement )
