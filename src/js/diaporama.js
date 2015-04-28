@@ -22,6 +22,7 @@ var diaporama = function(){
 	// To start autoplay
 	this.diaporama_startAutoplay = function(){ 	
 
+	    console.log("startAutoplay()");
 		startAutoplay(); 
 	}
 
@@ -44,25 +45,29 @@ var diaporama = function(){
 
 	function startAutoplay(){
 	    
+	    var speed_autoplay = JsonArray.speed_autoplay * 1000;
 		clearTimeout(timer1);
 		timer1 = null;
-	    timer1 = setTimeout( loopAutoplay, 6000);
-	    console.log('setTimeout 6');
+	    timer1 = setTimeout( loopAutoplay, speed_autoplay);
+	    console.log('setTimeout startAutoplay()'+speed_autoplay);
 	}
 
 	function loopAutoplay(){
 
+	    console.log('loopAutoplay');
 		startAutoplay();
 		next();
 	}
 
 	function pause_autoplay(){
 
+		var timer_start_autoplay = JsonArray.timer_start_autoplay * 1000;
+	    console.log("timer_start_autoplay"+timer_start_autoplay)
 		clearTimeout(timer1);
 		timer1 = null;
-	    timer1 = setTimeout( loopAutoplay, 120000);	    
-	    // autoplay will start after 20' of inactivity
-	    console.log('setTimeout 20');
+	    timer1 = setTimeout( loopAutoplay, timer_start_autoplay);	    
+	    // autoplay will start after n s' of inactivity
+	    console.log('timer_start_autoplay '+timer_start_autoplay);
 	}
 
 	function stop_autoplay(){
