@@ -2,8 +2,7 @@ var currentId =0;
 var timer1;
 var tweenDiapo;
 
-var diaporama = function(){
-
+var diaporama = function(execPath){
 	// public functions ////////////////////////////////////////////////////////////////////////////////
 
 	// To init Template 
@@ -116,6 +115,10 @@ var diaporama = function(){
 
 		$("#media_container div.divToKill_first").each(function() { this.parentNode.removeChild(this); });
 
+		// récupérer le chemin du fichier media
+		var path = require('path');
+		var media = path.join(execPath, 'media', JsonArray.items[id].file);
+
 		if(currentItem.type_media!="video"){
 
 			// it's a jpg
@@ -123,7 +126,7 @@ var diaporama = function(){
 			// on marque les div existantes pour pouvoir les effacer par la suite
 			$("#media_container div").each(function() {	this.className = "divToKill"; });
 			// on insère une div contenant l'image à afficher
-			document.getElementById("media_container").innerHTML += "<div class='div_to_show'><img  src='media/"+JsonArray.items[id].file+"'></div>"
+			document.getElementById("media_container").innerHTML += "<div class='div_to_show'><img  src='" + media +"'></div>"
 			// on tween en opacity de 0 à 1 - onComplete, on vire les div marquées
 			tweenDiapo = TweenLite.fromTo("#media_container .div_to_show", 3, { opacity:"0"},{ opacity:"1", onComplete: function(){
 
@@ -151,14 +154,14 @@ var diaporama = function(){
 			// 3 - on insère une div contenant la vidéo à afficher
 			var htmlToInsert = "<div class='div_to_show divToKill_first'>";
 			htmlToInsert += "	<video id='videoclip' controls='Play, Pause, Seeking' autoplay>";
-			htmlToInsert += "	<source  src='media/"+JsonArray.items[id].file+"' type='video/mp4'>";
+			htmlToInsert += "	<source  src='" + media +"' type='video/mp4'>";
 			htmlToInsert += "	</video>";
 			htmlToInsert += "</div>";
 			document.getElementById("media_container").innerHTML += htmlToInsert;
 			TweenLite.to("#media_container .div_to_show", 2, { opacity:"1" });
 			// 4 - on gère la detection de la fin de la vidéo
 			var toDoOnEnd = function() { 
-				startAutoplay(); ;	
+				startAutoplay();
 				next();
 			}
 			document.getElementById("videoclip").addEventListener("ended", toDoOnEnd);

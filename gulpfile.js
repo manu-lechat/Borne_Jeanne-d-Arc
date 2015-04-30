@@ -87,7 +87,8 @@ gulp.task('usemin', function(){
 		.pipe(usemin({
 			//css: [minifyCss(), 'concat'],
 			html: [minifyHtml({empty: true})],
-			js: [uglify()]
+			vendors: [uglify()],
+			app: [uglify()]
 		}))
 		.pipe(gulp.dest(dest.folder))
 		.pipe(refresh(server));
@@ -109,7 +110,7 @@ gulp.task('nw', function() {
 		files: [dest.folder + '/**/*', 'package.json'],
 		platforms: ['win','osx', 'linux64'],
 		buildDir: './webkitbuilds',
-		version: '0.8.6'
+		version: '0.12.1'
 	});
 	// log build stuff
 	nw.on('log', gutil.log);
