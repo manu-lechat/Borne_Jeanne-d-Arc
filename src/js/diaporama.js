@@ -154,7 +154,7 @@ var diaporama = function(execPath){
 			// 3 - on insère une div contenant la vidéo à afficher
 			var htmlToInsert = "<div class='div_to_show divToKill_first'>";
 			htmlToInsert += "	<video id='videoclip' controls='Play, Pause, Seeking' autoplay>";
-			htmlToInsert += "	<source  src='" + media +"' type='video/mp4'>";
+			htmlToInsert += "	<source  src='" + media +"' type='video/webm'>";
 			htmlToInsert += "	</video>";
 			htmlToInsert += "</div>";
 			document.getElementById("media_container").innerHTML += htmlToInsert;
