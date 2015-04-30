@@ -5,6 +5,28 @@ var urlJson = "json/borne_JA.json";
 var obj_diaporama;
 var timer_autoplay;
 
+
+// Load conf file /////////////////////////////////////////////////////////////
+var execPath = '';
+function loadConf(callback) {
+	var gui = require('nw.gui'),
+		fs = require('fs'),
+		path = require('path');
+
+	// récuperer le chemin de l'exe
+	// la conf et les médias sont à coté
+	execPath = path.dirname(process.execPath);
+
+	// récupérer le chemin du fichier de conf
+	var confPath = path.join(execPath, 'json', 'borne_JA.json');
+	// le charger
+	fs.readFile(confPath, 'utf-8', function (err, data) {
+		useJsonDatas(JSON.parse(data));
+	});
+}
+//////////////////////////////////////////////////////////////////////////////
+
+
 function initMain(){
 
 	console.log("initMain()");
@@ -17,10 +39,11 @@ function doNextStep(){
 	currentStep++;
 	switch(currentStep){
 		case 1: 
-			get_json();		
+			// load conf
+			loadConf(function() {});
 		break;	
 		case 2: 	
-			obj_diaporama = new diaporama();
+			obj_diaporama = new diaporama(execPath);
 			obj_diaporama.diaporama_init();
 			obj_diaporama.diaporama_startAutoplay();
 			init_listeners();
@@ -42,13 +65,6 @@ function init_listeners(){  console.log("init_listeners()");
 }
 
 // JSON ////////////////////////////////////////////////////////////////////////////////////////////
-
-function get_json(){
-
-	$.getJSON(urlJson, function(data) {
-		useJsonDatas(data);
-	});
-}
 
 function useJsonDatas(arr) {
 	JsonArray = arr;
