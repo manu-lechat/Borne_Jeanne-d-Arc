@@ -5,6 +5,7 @@ var urlJson = "json/borne_JA.json";
 var obj_diaporama;
 var timer_autoplay;
 
+var isNodeWebkit = (typeof process !== "undefined" && typeof require !== "undefined");
 
 // Load conf file /////////////////////////////////////////////////////////////
 var execPath = '';
@@ -48,10 +49,15 @@ function doNextStep(){
 	switch(currentStep){
 		case 1: 
 			// load conf
-			loadConf(function() {});
-		break;	
-		case 2: 	
-			obj_diaporama = new diaporama(execPath);
+			if (isNodeWebkit) {
+				loadConf(function() {});
+			}
+			else {
+				get_json();
+			}
+		break;
+		case 2:
+			obj_diaporama = new diaporama(execPath, isNodeWebkit);
 			obj_diaporama.diaporama_init();
 			obj_diaporama.diaporama_startAutoplay();
 			init_listeners();
@@ -73,6 +79,11 @@ function init_listeners(){  console.log("init_listeners()");
 }
 
 // JSON ////////////////////////////////////////////////////////////////////////////////////////////
+function get_json(){
+	$.getJSON(urlJson, function(data) {
+		useJsonDatas(data);
+	});
+}
 
 function useJsonDatas(arr) {
 	JsonArray = arr;
