@@ -16,12 +16,20 @@ function loadConf(callback) {
 	// récuperer le chemin de l'exe
 	// la conf et les médias sont à coté
 	execPath = path.dirname(process.execPath);
-
+	// sous mac c'est un peu différent
+	if (process.platform === 'darwin') {
+		execPath = path.join(execPath, '../../../../../..');
+	}
 	// récupérer le chemin du fichier de conf
 	var confPath = path.join(execPath, 'json', 'borne_JA.json');
 	// le charger
 	fs.readFile(confPath, 'utf-8', function (err, data) {
-		useJsonDatas(JSON.parse(data));
+		if (err) {
+			alert('Fichier de configuration manquant!')
+		}
+		else {
+			useJsonDatas(JSON.parse(data));
+		}
 	});
 }
 //////////////////////////////////////////////////////////////////////////////
