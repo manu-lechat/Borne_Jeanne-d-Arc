@@ -173,7 +173,7 @@ gulp.task('prepare', function() {
 	// delete dist folder and rebuild it
 	rimraf(dest.folder, function() {
 		rimraf('webkitbuilds', function() {
-			gulp.start('data', 'media', 'img', 'font', 'usemin');
+			gulp.start('data', 'img', 'font', 'usemin');
 		});
 	});
 });

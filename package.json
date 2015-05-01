@@ -4,11 +4,11 @@
   "description": "HISTORIAL JEANNE D'ARC – MY3 Jeanne et ROUEN",
   "main": "dist/index.html",
   "window": {
-    "toolbar": true,
-    "frame": true,
-    "fullscreen": false,
-    "height": 800,
-    "width": 1200
+    "toolbar": false,
+    "frame": false,
+    "fullscreen": true,
+    "height": 1920,
+    "width": 1080
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
