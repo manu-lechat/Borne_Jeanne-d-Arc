@@ -2,7 +2,7 @@ var currentId =0;
 var timer1;
 var tweenDiapo;
 
-var diaporama = function(execPath){
+var diaporama = function(execPath, isNodeWebkit){
 	// public functions ////////////////////////////////////////////////////////////////////////////////
 
 	// To init Template 
@@ -116,8 +116,14 @@ var diaporama = function(execPath){
 		$("#media_container div.divToKill_first").each(function() { this.parentNode.removeChild(this); });
 
 		// récupérer le chemin du fichier media
-		var path = require('path');
-		var media = path.join(execPath, 'media', JsonArray.items[id].file);
+		var media;
+		if (isNodeWebkit) {
+			var path = require('path');
+			media = path.join(execPath, 'media', JsonArray.items[id].file);
+		}
+		else {
+			media = 'media/' + currentItem.file;
+		}
 
 		if(currentItem.type_media!="video"){
 
